@@ -6,7 +6,6 @@ include Credentials
 require 'watir'
 $browser = Watir::Browser.new
 $browser.window.maximize
-# $wait = Selenium::WebDriver::Wait.new(timeout:  30)
 
 def login
   $browser.goto($website);
@@ -29,30 +28,22 @@ def login
 end
 
 def set_adderss
-    # sleep 1.5
-    # name = $browser.button(value: "Use my current location")
-    # puts name.present?
-    #if name.present? #if you want to buypass add address then uncomment this and end tag also
+  #if you want to buypass add address then uncomment "#bypass address" lines
+  # name = $browser.button(value: "Use my current location")      #bypass address
+  # if name.present?                                               #bypass address
     $browser.text_field(name: "name").set($name)
     $browser.text_field(name: "phone").set($mobileno)
     $browser.text_field(name: "pincode").set($pincode)
     $browser.text_field(name: "addressLine2").set($locality)
     $browser.textarea(name: "addressLine1").set($addressLine1)
-    # $browser.label(class: "_8J-bZE _2tcMoY").click
     $browser.label(for: $address_type).click
     save_address_btn = $browser.button(class: "_7UHT_c").click
- # end
+  # end                                                          #bypass address
   continu_for_email = $browser.button(value: "CONTINUE")
   continu_for_email.click
   for_payment_option = $browser.radio(id: "COD").click!
   conform_order = $browser.button(class: "_7UHT_c")
-  # sleep 5
-  # until conform_order.click do
-  #   sleep 3
-  #   conform_order.click
-  #   puts "order not place"
-  # end
-  # puts "order is placed"
+  puts "order is placed"
   sleep 200
 end
 
